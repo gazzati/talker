@@ -15,7 +15,9 @@ const App = () => {
 
   return (
     <div className={styles.talker}>
-      <Logo />
+      <div className={styles.logo}>
+        <Logo />
+      </div>
 
       <Video ref={localVideoRef} muted={true} />
       {destination && <RemoteVideo id={destination} />}
