@@ -22,6 +22,7 @@
     width: 100%;
     height: 100%;
     background-color: transparent;
+    padding: 16px;
   }
 }
 
@@ -31,7 +32,24 @@
   }
 }
 
-video {
-  margin-top: 16px;
-  border-radius: 8px;
+.videosContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  video {
+    border-radius: 4px;
+  }
+
+  .remoteVideo {
+    width: 100%;
+  }
+
+  .localVideo {
+    position: absolute;
+    max-width: 200px;
+    max-height: 200px;
+    right: 8px;
+    top: 8px;
+  }
 }

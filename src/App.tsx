@@ -19,8 +19,10 @@ const App = () => {
         <Logo />
       </div>
 
-      <Video ref={localVideoRef} muted={true} />
-      {destination && <RemoteVideo id={destination} />}
+      <div className={styles.videosContainer}>
+        <Video id="local" className={styles.localVideo} ref={localVideoRef} muted={true} />
+        {destination && <RemoteVideo id={destination} />}
+      </div>
     </div>
   )
 }

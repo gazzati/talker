@@ -1,6 +1,8 @@
 import React from "react"
 //import React, { useEffect, useState } from 'react';
 
+import styles from "../style.m.scss"
+
 import Video from "./Video"
 
 const RemoteVideo = ({ id }) => {
@@ -23,7 +25,7 @@ const RemoteVideo = ({ id }) => {
   //   }
   // }, [id])
 
-  return <Video id={id} />
+  return <Video id={id} className={styles.remoteVideo}/>
 }
 
 export default RemoteVideo
