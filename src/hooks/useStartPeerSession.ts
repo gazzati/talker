@@ -1,11 +1,7 @@
 /* eslint-disable no-console */
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 
-import { createPeerConnectionContext } from "../utils/PeerConnectionSession"
-
-export const useStartPeerSession = userMediaStream => {
-  const peerVideoConnection = useMemo(() => createPeerConnectionContext(), [])
-
+export const useStartPeerSession = (peerVideoConnection, userMediaStream) => {
   const [destination, setDestination] = useState(null)
 
   const addPeerCb = dst => _stream => {
@@ -31,6 +27,7 @@ export const useStartPeerSession = userMediaStream => {
       })
 
       peerVideoConnection.onRemoveUser(socketId => {
+        console.log("onRemoveUser", socketId)
         setDestination(null)
         peerVideoConnection.removePeerConnection(socketId)
       })

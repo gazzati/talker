@@ -85,6 +85,10 @@ class PeerConnectionSession {
     })
   }
 
+  hangup() {
+    this.socket.emit("hangup")
+  }
+
   clearConnections() {
     this.socket.close()
     this.senders = []

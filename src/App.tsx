@@ -1,11 +1,12 @@
-import { Logo, Mic, MicOff, Dynamic, DynamicOff, VideoOn, VideoOff } from "@components/Icons"
+import { Logo, Mic, MicOff, Dynamic, DynamicOff, VideoOn, VideoOff, Hangup } from "@components/Icons"
 import RemoteVideo from "@components/RemoteVideo"
 import Video from "@components/Video"
-import React, { useState, useRef } from "react"
+import React, {useState, useRef, useMemo} from 'react';
 
 import { useCreateMediaStream } from "./hooks/useCreateMediaStream"
 import { useStartPeerSession } from "./hooks/useStartPeerSession"
 import styles from "./style.m.scss"
+import {createPeerConnectionContext} from './utils/PeerConnectionSession'
 
 const App = () => {
   const [muted, setMuted] = useState(false)
@@ -15,7 +16,9 @@ const App = () => {
   const localVideoRef = useRef<HTMLVideoElement>(null)
   const userMediaStream = useCreateMediaStream(localVideoRef)
 
-  const { destination } = useStartPeerSession(userMediaStream)
+  const peerVideoConnection = useMemo(() => createPeerConnectionContext(), [])
+
+  const { destination } = useStartPeerSession(peerVideoConnection, userMediaStream)
 
   const handleMute = () => {
     userMediaStream?.getTracks()?.forEach(track => {
@@ -44,6 +47,10 @@ const App = () => {
     setDynamicState(!dynamicOff)
   }
 
+  const hangup = () => {
+    peerVideoConnection.hangup()
+  }
+
   return (
     <div className={styles.talker}>
       <div className={styles.logo}>
@@ -69,8 +76,12 @@ const App = () => {
           {videoOff ? <VideoOff /> : <VideoOn />}
         </div>
 
-        {destination &&  <div className={styles.action} onClick={handleDynamicToggle}>
+        {destination && <div className={styles.action} onClick={handleDynamicToggle}>
           {dynamicOff ? <DynamicOff /> : <Dynamic />}
+        </div>}
+
+        {destination && <div className={`${styles.action} ${styles.hangup}`} onClick={hangup}>
+          <Hangup />
         </div>}
 
       </div>
