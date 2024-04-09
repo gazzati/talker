@@ -57,6 +57,8 @@
 }
 
 .actions {
+  position: fixed;
+  bottom: 16px;
   display: flex;
   width: 100%;
   justify-content: center;

@@ -69,7 +69,7 @@ const App = () => {
           {videoOff ? <VideoOff /> : <VideoOn />}
         </div>
 
-        {!destination &&  <div className={styles.action} onClick={handleDynamicToggle}>
+        {destination &&  <div className={styles.action} onClick={handleDynamicToggle}>
           {dynamicOff ? <DynamicOff /> : <Dynamic />}
         </div>}
 
