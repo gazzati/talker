@@ -42,13 +42,12 @@
     border-radius: 4px;
   }
 
-  // .remoteVideo {
-  .localVideo {
+  .remoteVideo {
     width: 100%;
     margin: auto;
   }
 
-  .remoteVideo {
+  .localVideo {
     position: absolute;
     max-width: 200px;
     max-height: 200px;
